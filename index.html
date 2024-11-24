@@ -11,6 +11,9 @@
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
             text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensures full-page height */
         }
         .header {
             background-color: #333;
@@ -23,14 +26,15 @@
         .store-image {
             width: 100%;
             max-width: 600px;
+            margin-top: 20px;
         }
         .footer {
             background-color: #333;
             color: white;
-            padding: 5px 0;
-            position: fixed;
-            bottom: 0;
+            padding: 10px 0;
+            position: relative;
             width: 100%;
+            margin-top: auto; /* Push footer to bottom */
         }
         .footer a {
             color: #f4f4f4;
@@ -39,6 +43,12 @@
         }
         .footer a:hover {
             text-decoration: underline;
+        }
+        .second-footer {
+            background-color: #444;  /* Slightly different color */
+            color: white;
+            padding: 10px 0;
+            width: 100%;
         }
     </style>
 </head>
@@ -49,11 +59,16 @@
     
     <img src="Storefront.jpg" alt="Storefront Photo" class="store-image">
         
+    <!-- First Footer -->
     <div class="footer">
-    <a href="inventory.html">View Our Inventory</a>
-    <a href="my-cart.html">My-Cart</a>
-    <a href="about-us.html">About Us</a>
-</div>
+        <a href="inventory.html">View Our Inventory</a>
+        <a href="my-cart.html">My-Cart</a>
+    </div>
+
+    <!-- Second Footer -->
+    <div class="second-footer">
+        <a href="about-us.html">About Us</a>
+    </div>
     
 </body>
 </html>
