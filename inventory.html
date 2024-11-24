@@ -13,25 +13,40 @@
         }
         .item {
             margin: 20px;
+            display: inline-block;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: white;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
     <h1>Store Inventory</h1>
     <div class="item">
-    <img src="item1.jpg" alt="Item 1" width="200px">
-    <p>Description of Item 1 - $10</p>
-    <button onclick="addToCart('Item 1', 10, 'item1.jpg')">Add to Cart</button>
-</div>
+        <img src="item1.jpg" alt="Item 1" width="200px">
+        <p>Description of Item 1 - $10</p>
+        <button onclick="addToCart('Item 1', 10, 'item1.jpg')">Add to Cart</button>
+    </div>
 
-<script>
-    function addToCart(name, price, image) {
-        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-        cartItems.push({ name, price, image });
-        localStorage.setItem('cart', JSON.stringify(cartItems));
-        alert(`${name} added to cart!`);
-    }
-</script>
+    <script>
+        function addToCart(name, price, image) {
+            let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.push({ name, price, image });
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            alert(`${name} added to cart!`);
+        }
+    </script>
 
     <!-- Add more items here -->
     <a href="index.html">Back to Home</a>
