@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Manage Inventory</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        form { margin: 20px; }
+        .item { margin: 10px 0; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Manage Inventory</h1>
+    <form id="addItemForm" enctype="multipart/form-data">
+        <input type="text" name="name" placeholder="Item Name" required><br>
+        <textarea name="description" placeholder="Description" required></textarea><br>
+        <input type="number" name="price" placeholder="Price" required step="0.01"><br>
+        <input type="file" name="image" accept="image/*" required><br>
+        <button type="submit">Add Item</button>
+    </form>
+
+    <div id="inventoryList"></div>
+
+    <script>
+        async function fetchInventory() {
+            const response = await fetch('/get-inventory');  // Fetch items from the server
+            const items = await response.json();
+            const list = document.getElementById('inventoryList');
+            list.innerHTML = '';  // Clear previous content
+
+            items.forEach(item => {
+                list.innerHTML += `
+                    <div class="item">
+                        <img src="${item.image_url}" width="100"><br>
+                        <strong>${item.name}</strong><br>
+                        ${item.description} - $${item.price}<br>
+                        <button onclick="deleteItem(${item.id})">Delete</button>
+                    </div>
+                `;
+            });
+        }
+
+        async function deleteItem(id) {
+            await fetch(`/delete-item/${id}`, { method: 'DELETE' });
+            fetchInventory();  // Refresh list
+        }
+
+        document.getElementById('addItemForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const formData = new FormData(e.target);
+            await fetch('/add-item', { method: 'POST', body: formData });
+            e.target.reset();
+            fetchInventory();  // Refresh list
+        });
+
+        // Load inventory on page load
+        fetchInventory();
+    </script>
+</body>
+</html>
