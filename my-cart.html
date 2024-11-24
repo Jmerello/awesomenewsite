@@ -24,6 +24,23 @@
             font-size: 20px;
             margin-top: 20px;
         }
+        .footer {
+            background-color: #333;
+            color: white;
+            padding: 5px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        .footer a {
+            color: #f4f4f4;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        
     </style>
 </head>
 <body>
@@ -31,7 +48,6 @@
     <div id="cart-items"></div>
     <div class="cart-total" id="cart-total"></div>
     <button onclick="checkout()">Proceed to Checkout</button>
-    <a href="inventory.html">Back to Inventory</a>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -67,5 +83,9 @@
             alert('Proceeding to checkout...'); // Replace with real checkout logic
         }
     </script>
+
+    <div class="footer">
+        <a href="inventory.html">Back to Inventory</a>
+    </div>
 </body>
 </html>
